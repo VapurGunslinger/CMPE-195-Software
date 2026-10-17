@@ -2,6 +2,7 @@
 
 ## Team
 Name (GitHub username) for each member.
+Julio Coronado-Toscano(VapurGunslinger)
 
 ## Project Description
 Two or three sentences: the problem and your solution.
@@ -14,6 +15,8 @@ A diagram or clear description of the components and how they connect.
 
 ## Prerequisites
 Software, tools, accounts and hardware needed, with versions.
+Dart
+Fluttwer
 
 ## Installation
 Numbered steps from a clean machine. Document environment variables without their values.
