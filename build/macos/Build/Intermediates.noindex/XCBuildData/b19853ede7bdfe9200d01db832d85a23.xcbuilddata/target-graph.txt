@@ -1,0 +1,8 @@
+Target dependency graph (4 targets)
+Target 'Runner' in project 'Runner'
+➜ Explicit dependency on target 'Flutter Assemble' in project 'Runner'
+➜ Explicit dependency on target 'FlutterGeneratedPluginSwiftPackage' in project 'FlutterGeneratedPluginSwiftPackage'
+Target 'FlutterGeneratedPluginSwiftPackage' in project 'FlutterGeneratedPluginSwiftPackage'
+➜ Explicit dependency on target 'FlutterGeneratedPluginSwiftPackage' in project 'FlutterGeneratedPluginSwiftPackage'
+Target 'FlutterGeneratedPluginSwiftPackage' in project 'FlutterGeneratedPluginSwiftPackage' (no dependencies)
+Target 'Flutter Assemble' in project 'Runner' (no dependencies)
