@@ -2,8 +2,7 @@
 
 ## Team
 Name (GitHub username) for each member.
-Julio Coronado-Toscano(VapurGunslinger)
-Cung Sin Mawi- deborahcsm12
+Julio Coronado-Toscano(VapurGunslinger), Cung Sin Mawi(deborahcsm12)
 
 ## Project Description
 Two or three sentences: the problem and your solution.
