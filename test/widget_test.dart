@@ -7,8 +7,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_application_1/login_page.dart';
-import 'package:flutter_application_1/main.dart';
+import 'package:pulse_oximeter_app/login_page.dart';
+import 'package:pulse_oximeter_app/main.dart';
 
 void main() {
   testWidgets('OxyTrack splash screen shows app branding', (tester) async {
@@ -25,7 +25,8 @@ void main() {
       ),
     );
 
+    expect(find.text('Welcome back'), findsOneWidget);
     expect(find.text('Log In'), findsOneWidget);
-    expect(find.text('Continue with Google'), findsOneWidget);
+    expect(find.text('Sign Up'), findsOneWidget);
   });
 }

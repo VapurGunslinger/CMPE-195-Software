@@ -266,7 +266,7 @@
       "languageVersion": "3.3"
     },
     {
-      "name": "flutter_application_1",
+      "name": "pulse_oximeter_app",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.10"

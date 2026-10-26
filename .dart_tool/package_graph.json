@@ -1,10 +1,10 @@
 {
   "roots": [
-    "flutter_application_1"
+    "pulse_oximeter_app"
   ],
   "packages": [
     {
-      "name": "flutter_application_1",
+      "name": "pulse_oximeter_app",
       "version": "1.0.0+1",
       "dependencies": [
         "cupertino_icons",
