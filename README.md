@@ -136,7 +136,7 @@ Automated unit, widget, integration, and device-communication tests will be adde
 
 ## Demo
 
-Demo video: **To be added**
+Demo video: **(https://drive.google.com/drive/u/1/folders/1cM36bazQHmaAiHFZR-_Ffyub5bjFIg46)**
 
 Screenshots and execution logs will be added here as the prototype is updated.
 
