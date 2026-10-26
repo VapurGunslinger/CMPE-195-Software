@@ -1,4 +1,4 @@
-# [Project Name]
+# [Pulse Oximeter]
 
 ## Team
 Name (GitHub username) for each member.
