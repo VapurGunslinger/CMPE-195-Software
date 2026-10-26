@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'account_page.dart';
+import 'auth_storage.dart';
 import 'login_page.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -37,19 +38,25 @@ class SettingsPage extends StatelessWidget {
               title: 'Notifications',
               subtitle: 'Alerts for low oxygen or abnormal heart rate',
               icon: Icons.notifications_none_rounded,
-              onTap: () {},
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Notification settings coming soon.'),
+                  ),
+                );
+              },
             ),
             _SettingsCard(
               title: 'Privacy',
               subtitle: 'Control sharing and security options',
               icon: Icons.shield_outlined,
-              onTap: () {},
-            ),
-            _SettingsCard(
-              title: 'App Preferences',
-              subtitle: 'Theme, units, and more',
-              icon: Icons.settings_outlined,
-              onTap: () {},
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Privacy settings coming soon.'),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 18),
             SizedBox(
@@ -62,11 +69,14 @@ class SettingsPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (_) => const LoginPage()),
-                    (route) => false,
-                  );
+                onPressed: () async {
+                  await AuthStorage.logOut();
+                  if (context.mounted) {
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (_) => const LoginPage()),
+                      (route) => false,
+                    );
+                  }
                 },
                 child: const Text('Log Out'),
               ),

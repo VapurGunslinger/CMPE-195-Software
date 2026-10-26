@@ -1,9 +1,49 @@
 import 'package:flutter/material.dart';
 
 import 'account_page.dart';
+import 'auth_storage.dart';
+import 'history_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _bluetoothConnected = false;
+  String _userName = 'Name';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  Future<void> _loadUserName() async {
+    final account = await AuthStorage.getSavedAccount();
+    if (!mounted) return;
+    setState(() {
+      _userName = account['name'] ?? 'Name';
+    });
+  }
+
+  void _handleBluetoothPlaceholder() {
+    setState(() {
+      _bluetoothConnected = !_bluetoothConnected;
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          _bluetoothConnected
+              ? 'Bluetooth placeholder connected to CC2340 module.'
+              : 'Bluetooth placeholder disconnected.',
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +51,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('Welcome, Name!'),
+        title: Text('Welcome, $_userName!'),
         titleTextStyle: const TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.w700,
@@ -20,9 +60,11 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const AccountPage()),
-              );
+              Navigator.of(context)
+                  .push(
+                    MaterialPageRoute(builder: (_) => const AccountPage()),
+                  )
+                  .then((_) => _loadUserName());
             },
             icon: const Icon(Icons.account_circle_outlined, size: 30),
           ),
@@ -66,16 +108,45 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 18),
-              const Row(
+              Row(
                 children: [
-                  Icon(Icons.fiber_manual_record, color: Colors.green, size: 14),
-                  SizedBox(width: 8),
-                  Text('Connected', style: TextStyle(color: Color(0xFF2E7D32))),
-                  Spacer(),
-                  Text('Last updated: 9:41 AM', style: TextStyle(color: Color(0xFF64748B))),
+                  Icon(
+                    _bluetoothConnected ? Icons.bluetooth_connected : Icons.bluetooth_disabled,
+                    color: _bluetoothConnected ? Colors.green : Colors.orange,
+                    size: 14,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    _bluetoothConnected ? 'Bluetooth Connected' : 'Bluetooth Disconnected',
+                    style: TextStyle(
+                      color: _bluetoothConnected ? const Color(0xFF2E7D32) : const Color(0xFFB26A00),
+                    ),
+                  ),
+                  const Spacer(),
+                  const Text('Last updated: 9:41 AM', style: TextStyle(color: Color(0xFF64748B))),
                 ],
               ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFF2B7DE9),
+                    side: const BorderSide(color: Color(0xFF2B7DE9)),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                  ),
+                  onPressed: _handleBluetoothPlaceholder,
+                  icon: const Icon(Icons.bluetooth_searching_rounded),
+                  label: Text(
+                    _bluetoothConnected ? 'Disconnect BLE' : 'Connect BLE Device',
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -87,7 +158,14 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (!_bluetoothConnected) {
+                      _handleBluetoothPlaceholder();
+                    }
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const HistoryPage()),
+                    );
+                  },
                   child: const Text(
                     'Start Monitoring',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
@@ -107,7 +185,11 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const HistoryPage()),
+                      );
+                    },
                     child: const Text('View All'),
                   ),
                 ],
@@ -129,7 +211,7 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.03),
+                        color: Colors.black.withValues(alpha: 0.03),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       )
@@ -210,7 +292,7 @@ class _HealthMetricCard extends StatelessWidget {
                 width: 42,
                 height: 42,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.35),
+                  color: Colors.white.withValues(alpha: 0.35),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(icon, color: iconColor),

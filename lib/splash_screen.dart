@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import 'auth_storage.dart';
 import 'login_page.dart';
+import 'main_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,10 +18,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer(const Duration(milliseconds: 1500), () {
+    _timer = Timer(const Duration(milliseconds: 1500), () async {
       if (!mounted) return;
+
+      final isLoggedIn = await AuthStorage.isLoggedIn();
+      if (!mounted) return;
+
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const LoginPage()),
+        MaterialPageRoute(
+          builder: (_) => isLoggedIn ? const MainPage() : const LoginPage(),
+        ),
       );
     });
   }
