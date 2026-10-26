@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # Pulse Oximeter
 
+=======
+>>>>>>> c2b95febe8505ab3582fe18bd8b3cd3f7ee4e027
 ## Team
 
 | Team Member | GitHub Username |
