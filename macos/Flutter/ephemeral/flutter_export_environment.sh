@@ -1,8 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\billj\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\billj\OneDrive\Desktop\CMPE 195\flutter_app\flutter_application_1"
-export "FLUTTER_FRAMEWORK_SWIFT_PACKAGE_PATH=C:\Users\billj\OneDrive\Desktop\CMPE 195\flutter_app\flutter_application_1\macos\Flutter\ephemeral\Packages\.packages\FlutterFramework"
+export "FLUTTER_ROOT=/Users/cungsinmawi/development/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/cungsinmawi/Desktop/SJSU Fall 26/CMPE 195B/CMPE-195-Software"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
